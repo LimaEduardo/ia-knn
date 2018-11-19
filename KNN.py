@@ -19,15 +19,30 @@ class KNN:
         # print(resultado)
         return resultado_ordenado[0:k]
     
-    def run(self,teste, k):
-        melhores_vizinhos = self.melhoresVizinhos(teste,k)
-        
-        resultado = {}
-        for vizinho in melhores_vizinhos:
-            dado = self.dados[vizinho['indice']]
-            try:
-                resultado[dado[-1]] += 1
-            except KeyError:
-                resultado[dado[-1]] = 1
-        print(resultado)
+    def run(self,testes, k):
+        resultados = []
+        for teste in testes:
+            melhores_vizinhos = self.melhoresVizinhos(teste,k)
+            
+            resultado = {}
+            for vizinho in melhores_vizinhos:
+                dado = self.dados[vizinho['indice']]
+                try:
+                    resultado[dado[-1]] += 1
+                except KeyError:
+                    resultado[dado[-1]] = 1
+            
+            
+            valor_maximo = -1
+            chave_maxima = -1
+            
+            for (chave, valor) in resultado.items():
+                if(valor > valor_maximo):
+                    valor_maximo = valor
+                    chave_maxima = chave
+            
+            resultados.append(chave_maxima)
+
+        return resultados
+    
 
