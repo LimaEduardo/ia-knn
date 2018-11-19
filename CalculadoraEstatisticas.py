@@ -92,6 +92,9 @@ class CalculadoraEstatisticas:
         return diagonal/total
                 
 
+    def getClassesRatings(self):
+        return self.classesRatings
+
 
     def __str__(self):
         saida = ""

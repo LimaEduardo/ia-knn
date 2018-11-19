@@ -3,6 +3,7 @@ from MatrizConfusao import MatrizConfusao
 from MatrizAcertos import MatrizAcertos
 from LeitorArquivo import LeitorArquivo, LeitorArquivoComTestes
 from KNN import KNN
+from prettytable import PrettyTable
 
 import sys
 
@@ -20,6 +21,7 @@ def main():
     
     melhor_k = -1
     melhor_acuracia = -1
+    todasEstatisticas = {}
     for k in k_para_teste:
         print("\n\n************* TESTANDO PARA K = " + str(k) + "**********************\n\n")
         resultado_knn = knn.run(dados[1], k)
@@ -39,12 +41,40 @@ def main():
             melhor_acuracia = acuracia
             melhor_k = k
 
-        print(calculadoraEstatisticas)
+        todasEstatisticas[k] = calculadoraEstatisticas
+
+        # print(calculadoraEstatisticas)
         print("\n\n************* TÉRMINO DO TESTE PARA K = " + str(k) + "**********************\n\n")
+
+    escreveTabelaTodasEstatisticas(todasEstatisticas)
 
     print("Melhor K: " + str(melhor_k))
     print("Melhor acurácia: " + str(melhor_acuracia))
 
-    
+def escreveTabelaTodasEstatisticas(todasEstatisticas):
+    saida = PrettyTable()
+    header = ["", "Dados das classes", "Accuracy (Overall)"]
+    saida.field_names = header
+    for k in todasEstatisticas:
+        
+        tabela = PrettyTable()
+        header_interno = ["", "Recall", "Specificity", "Precisao", "F-Score", "Acuracia"]
+        tabela.field_names = header_interno
+        
+        classesRating = todasEstatisticas[k].getClassesRatings()
+        for classe in classesRating:
+            row = []
+            row.append(classe["nome"])
+            row.append(classe["truePositive"])
+            row.append(classe["trueNegative"])
+            row.append(classe["precision"])
+            row.append(classe["fScore"])
+            row.append(classe["accuracy"])
+            tabela.add_row(row)
+        
+        row_saida = [str(k), tabela, todasEstatisticas[k].calculateOverralAccuracy()]
+        saida.add_row(row_saida)
+
+    print(saida)
 
 main()
