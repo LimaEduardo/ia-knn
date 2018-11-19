@@ -4,6 +4,7 @@ class KNN:
 
     def __init__(self, dados):
         self.dados = dados
+        self.cache = {}
 
     def distanciaEuclidiana(self, lista1, lista2):
         resultado = 0
@@ -17,12 +18,19 @@ class KNN:
             resultado.append({'indice' : index, 'distancia' : self.distanciaEuclidiana(teste,dado)})
         resultado_ordenado = sorted(resultado, key=lambda k: k['distancia'])
         # print(resultado)
-        return resultado_ordenado[0:k]
+        return resultado_ordenado
     
     def run(self,testes, k):
         resultados = []
-        for teste in testes:
-            melhores_vizinhos = self.melhoresVizinhos(teste,k)
+        for indice, teste in enumerate(testes):
+            try:
+                self.cache[indice]
+                melhores_vizinhos = self.cache[indice]
+            except KeyError:
+                melhores_vizinhos = self.melhoresVizinhos(teste,k)
+                self.cache[indice] = melhores_vizinhos
+            
+            melhores_vizinhos = melhores_vizinhos[0:k]
             
             resultado = {}
             for vizinho in melhores_vizinhos:

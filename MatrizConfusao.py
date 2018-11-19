@@ -35,6 +35,11 @@ class MatrizConfusao:
                 linha.append(self.matriz[classe][sub_classe])
             saida.add_row(linha)
         
-        return saida.__str__()
+        saidaComLabels = PrettyTable()
+        saidaComLabels.field_names = ["", "Predição"]
+        saidaComLabels.add_row(["\n\n\nVerdadeiro", saida.__str__()])
+
+        
+        return saidaComLabels.__str__()
 
     
