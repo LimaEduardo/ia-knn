@@ -37,7 +37,7 @@ def main():
         calculadoraEstatisticas = CalculadoraEstatisticas(matrizConfusao)
 
         acuracia = calculadoraEstatisticas.calculateOverralAccuracy()
-        if acuracia > melhor_acuracia:
+        if acuracia >= melhor_acuracia:
             melhor_acuracia = acuracia
             melhor_k = k
 
