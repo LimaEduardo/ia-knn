@@ -18,6 +18,8 @@ def main():
     for index, k in enumerate(k_para_teste):
         k_para_teste[index] = int(k)
     
+    melhor_k = -1
+    melhor_acuracia = -1
     for k in k_para_teste:
         print("\n\n************* TESTANDO PARA K = " + str(k) + "**********************\n\n")
         resultado_knn = knn.run(dados[1], k)
@@ -32,9 +34,16 @@ def main():
 
         calculadoraEstatisticas = CalculadoraEstatisticas(matrizConfusao)
 
+        acuracia = calculadoraEstatisticas.calculateOverralAccuracy()
+        if acuracia > melhor_acuracia:
+            melhor_acuracia = acuracia
+            melhor_k = k
+
         print(calculadoraEstatisticas)
         print("\n\n************* TÉRMINO DO TESTE PARA K = " + str(k) + "**********************\n\n")
 
+    print("Melhor K: " + str(melhor_k))
+    print("Melhor acurácia: " + str(melhor_acuracia))
 
     
 
