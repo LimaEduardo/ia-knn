@@ -102,10 +102,10 @@ class CalculadoraEstatisticas:
             saida += "************** Classe : " + str(classe['nome']) + " **************" + "\n"
             # saida += "Taxa de falso negativo: " + str(classe['falseNegative']) + "\n"
             # saida += "Taxa de falso positivo: " + str(classe['falsePositive']) + "\n"
-            saida += "Taxa de verdadeiro positivo (Recall): " + str(classe['truePositive']) + "\n"
-            saida += "Taxa de verdadeiro negativo (Specificity): " + str(classe['trueNegative']) + "\n"
-            saida += "Acuracia: " + str(classe['accuracy']) + "\n"
-            saida += "Precisao: " + str(classe['precision']) + "\n"
-            saida += "F-Score:  " + str(classe['fScore']) + "\n\n"
-        saida += "Overral Accuracy: " + str(self.calculateOverralAccuracy())
+            saida += "Taxa de verdadeiro positivo (Recall): " + "{:.3f}".format(str(classe['truePositive'])) + "\n"
+            saida += "Taxa de verdadeiro negativo (Specificity): " + "{:.3f}".format(str(classe['trueNegative'])) + "\n"
+            saida += "Acuracia: " + "{:.3f}".format(str(classe['accuracy'])) + "\n"
+            saida += "Precisao: " + "{:.3f}".format(str(classe['precision'])) + "\n"
+            saida += "F-Score:  " + "{:.3f}".format(str(classe['fScore'])) + "\n\n"
+        saida += "Overral Accuracy: " + "{:.3f}".format(str(self.calculateOverralAccuracy()))
         return saida

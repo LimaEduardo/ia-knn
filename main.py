@@ -48,8 +48,8 @@ def main():
 
     escreveTabelaTodasEstatisticas(todasEstatisticas)
 
-    print("Melhor K: " + str(melhor_k))
-    print("Melhor acurácia: " + str(melhor_acuracia))
+    print("K da melhor acurácia: " + str(melhor_k))
+    print("Melhor acurácia: " + "{:.3f}".format(melhor_acuracia))
 
 def escreveTabelaTodasEstatisticas(todasEstatisticas):
     saida = PrettyTable()
@@ -65,14 +65,14 @@ def escreveTabelaTodasEstatisticas(todasEstatisticas):
         for classe in classesRating:
             row = []
             row.append(classe["nome"])
-            row.append(classe["truePositive"])
-            row.append(classe["trueNegative"])
-            row.append(classe["precision"])
-            row.append(classe["fScore"])
-            row.append(classe["accuracy"])
+            row.append("{:.3f}".format(classe["truePositive"]))
+            row.append("{:.3f}".format(classe["trueNegative"]))
+            row.append("{:.3f}".format(classe["precision"]))
+            row.append("{:.3f}".format(classe["fScore"]))
+            row.append("{:.3f}".format(classe["accuracy"]))
             tabela.add_row(row)
         
-        row_saida = [str(k), tabela, todasEstatisticas[k].calculateOverralAccuracy()]
+        row_saida = [str(k), tabela, "{:.3f}".format(todasEstatisticas[k].calculateOverralAccuracy())]
         saida.add_row(row_saida)
 
     print(saida)
