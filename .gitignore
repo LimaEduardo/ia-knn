@@ -103,5 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-./arquivo_teste
-./arquivo_treino
+arquivo_teste
+arquivo_treino
