@@ -7,12 +7,12 @@ Implementation of the KNN algorithm for the Artificial Intelligence class at UFL
 To run this project, open this folder on the terminal and run
 
 ```
-$python3 main.py <path_to_database> <percentage_use_to_teste> <numbers_of_k_to_teste>
+$ python3 main.py <path_to_database> <percentage_use_to_test> <numbers_of_k_to_test>
 ```
 
 For example:
 ```
-$python3 main.py spambase/spambase.data 0.10 1 3 5 7
+$ python3 main.py spambase/spambase.data 0.10 1 3 5 7
 ```
 
 ### Prerequisites
